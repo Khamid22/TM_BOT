@@ -6,4 +6,7 @@ from data import config
 bot = Bot(token=config.BOT_TOKEN, parse_mode=types.ParseMode.HTML)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
+
+# loading database
+DATABASE_URL = 'postgresql://postgres:khamid007@localhost:5432/db_medication'
 db = Database()

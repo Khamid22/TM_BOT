@@ -1,11 +1,14 @@
+from db_sqlalchemy import Database
 import asyncio
-from db_commands import Database
-db = Database()
+
+DATABASE_URL = 'postgresql+asyncpg://postgres:khamid007@localhost:5432/db_medication'
 
 
-async def run_test():
-    await db.create()
-    await db.delete_all_users()
-    print("Users have been deleted")
-asyncio.get_event_loop().run_until_complete(run_test())
+async def test_db():
+    db = Database(DATABASE_URL)
+    users = await db.select_all_users()
+    for user in users:
+        print(user)
 
+if __name__ == '__main__':
+    asyncio.run(test_db())
