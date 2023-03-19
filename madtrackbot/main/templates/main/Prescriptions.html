@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Prescription - {{ prescription.medication_name }}
+{% endblock %}
+
+{% block content %}
+    <h1>Edit Prescription</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="medication_name">Medication Name:</label>
+        <input type="text" name="medication_name" value="{{ prescription.medication_name }}"><br>
+
+        <label for="dosage">Dosage:</label>
+        <input type="text" name="dosage" value="{{ prescription.dosage }}"><br>
+
+        <label for="instructions">Instructions:</label>
+        <textarea name="instructions">{{ prescription.instructions }}</textarea><br>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" value="{{ prescription.start_date }}"><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" value="{{ prescription.end_date }}"><br>
+
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}
