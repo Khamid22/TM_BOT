@@ -1,6 +1,6 @@
 from aiogram import executor
 
-from loader import dp
+from loader import dp, engine
 
 from utils.notify_admins import on_startup_notify
 from utils.set_bot_commands import set_default_commands
@@ -12,10 +12,7 @@ import loader
 
 
 async def on_startup(dispatcher):
-
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-
+    Base.metadata.create_all(engine)
     
     await set_default_commands(dispatcher)
     await on_startup_notify(dispatcher)
